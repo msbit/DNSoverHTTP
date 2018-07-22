@@ -489,7 +489,7 @@ launch_request(CURLM *curlm, const u_char *dnsreq, size_t reqlen,
 		goto servfail;
 	}
 
-	x = asprintf(&arg->url, "%s/proxy_dns", server);
+	x = asprintf(&arg->url, "%s", server);
 	if (x < 0) {
 		perror("asprintf");
 		goto servfail;
@@ -507,9 +507,9 @@ launch_request(CURLM *curlm, const u_char *dnsreq, size_t reqlen,
 	curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
 	curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
 	arg->headers = curl_slist_append(arg->headers, "Accept: "
-					 "application/octet-stream");
+					 "application/dns-message");
 	arg->headers = curl_slist_append(arg->headers, "Content-Type: "
-					 "application/octet-stream");
+					 "application/dns-message");
 	arg->headers = curl_slist_append(arg->headers, arg->transport);
 	curl_easy_setopt(curl, CURLOPT_HTTPHEADER, arg->headers);
 	curl_easy_setopt(curl, CURLOPT_POSTFIELDS, dnsreq);
