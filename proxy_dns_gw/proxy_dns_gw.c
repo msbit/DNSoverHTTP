@@ -7,6 +7,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/nameser.h>
+#include <arpa/nameser_compat.h>
 #include <arpa/inet.h>
 
 #include <assert.h>
@@ -18,6 +19,8 @@
 #include <unistd.h>
 
 #include <curl/curl.h>
+
+#define NS_MAXMSG   65535
 
 /* Parameters. */
 
